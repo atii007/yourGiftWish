@@ -19,14 +19,18 @@ const StepFour = ({
   handleChangeAddMoreInput,
   addMoreInputValue,
   handleSubmitData,
-  handleSelectedData
+  handleSelectedData,
 }: StepFourProps) => {
   const navigate = useNavigate();
   const { occasion, relation } = useParams();
   const params = new URLSearchParams(location.search);
 
   const handlePreviousButtonClick = () => {
-    navigate(`/${globalConstant.globalRoutePrefix}/${occasion}/${relation}/?${params.toString()}`);
+    navigate(
+      `/${
+        globalConstant.globalRoutePrefix
+      }/${occasion}/${relation}/?${params.toString()}`
+    );
     handleBack();
   };
 
@@ -49,9 +53,13 @@ const StepFour = ({
             {detailIdeasData &&
               isValidArray(detailIdeasData) &&
               detailIdeasData.map((item, index) => {
+                console.log("item", item);
                 return (
                   <React.Fragment key={index}>
-                    <ListingCard data={item} handleSelectedData={handleSelectedData} />
+                    <ListingCard
+                      data={item}
+                      handleSelectedData={handleSelectedData}
+                    />
                   </React.Fragment>
                 );
               })}
@@ -80,7 +88,7 @@ const StepFour = ({
                 <CustomButton
                   text="Add"
                   variant="outlined"
-                  onClick={()=>handleSubmitData(3)}
+                  onClick={() => handleSubmitData(3)}
                   sx={{
                     width: "100%",
                     borderColor: colors.primary.main,

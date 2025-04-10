@@ -8,6 +8,11 @@ export const ListingCardStyle = {
     borderLeft: `4px solid ${colors.primary.main}`,
     borderRadius: "10px",
   },
+  imageStyling: {
+    border: "4px solid red",
+    width: "200px",
+    height: "200px",
+  },
   buttonStyle: {
     textTransform: "capitalize",
     color: colors.primary.main,
