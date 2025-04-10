@@ -19,6 +19,11 @@ export const ListingCard = ({
         alignItems={"center"}
         gap={3}
       >
+        <img
+          src={data.imageUrl}
+          alt={data.title}
+          style={ListingCardStyle.imageStyling}
+        />
         <Typography variant="h6" my={1} sx={ListingCardStyle.heading}>
           {data?.title}
         </Typography>
