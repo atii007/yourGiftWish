@@ -3,11 +3,13 @@ import { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { publicRoutes } from "../index";
 import { VisitorLayout } from "../RouterLazyImports";
-import { Wrappers } from "src/containers";
+import { Footer, Wrappers } from "src/containers";
+import Header from "src/containers/Header";
 
 const Index = () => {
   return (
     <>
+      <Header />
       <Wrappers>
         <Suspense fallback={""}>
           <Routes>
@@ -36,6 +38,7 @@ const Index = () => {
           </Routes>
         </Suspense>
       </Wrappers>
+      <Footer />
     </>
   );
 };

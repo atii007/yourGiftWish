@@ -42,6 +42,7 @@ interface StepOneProps {
   modalOpen: boolean;
   handleOpenCloseModal: () => void;
   handleCloseOcassionModal: () => void;
+  setOccasionItem: React.Dispatch<React.SetStateAction<string | null>>;
 }
 interface DetailIdeaPayloadDataType {
   keywords: string;

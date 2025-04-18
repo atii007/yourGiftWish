@@ -1,20 +1,16 @@
-
 import { LayoutProps } from "@schemas";
-import Header from "../Header";
 import { Box, Container } from "@mui/material";
-import { Footer } from "../Footer";
-
 
 export const Wrappers = ({ children }: LayoutProps) => {
-
   return (
     <>
       <Box
         sx={{
           minHeight: "calc(100dvh - 150px)",
+          marginTop: "0px",
+          opacity: "0.9",
         }}
       >
-        <Header />
         <Box sx={{ display: "flex", flex: 1 }}>
           <Box
             sx={{
@@ -31,7 +27,6 @@ export const Wrappers = ({ children }: LayoutProps) => {
           </Box>
         </Box>
       </Box>
-      <Footer />
     </>
   );
 };

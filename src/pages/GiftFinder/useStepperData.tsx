@@ -22,7 +22,6 @@ export const useStepperData = () => {
     handleSubmitDetailIdeas,
     { isLoading: isDetailApiLoading, data: detailIdeasData },
   ] = usePostDetailIdeasMutation();
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -364,6 +363,11 @@ export const useStepperData = () => {
         ? otherSelectedPerson ?? globalConstant.other
         : relation;
 
+    const selectedPrices = optionalDetail.priceRange.split("-");
+    const minPrice = selectedPrices.length === 1 ? "500" : selectedPrices[0];
+    const maxPrice =
+      selectedPrices.length === 1 ? selectedPrices[0] : selectedPrices[1];
+
     const payload = {
       keywords: addMoreInputValue ?? "",
       age: optionalDetail.age,
@@ -377,9 +381,10 @@ export const useStepperData = () => {
       priceRange: optionalDetail.priceRange
         ? globalConstant.convertPriceRangeTostring[optionalDetail.priceRange]
         : "",
+      minPrice: parseInt(minPrice),
+      maxPrice: parseInt(maxPrice),
     };
     try {
-      console.log("payload", payload);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await handleSubmitDetailIdeas(payload).unwrap();
       setApiSuggestion(response.suggestion);
@@ -434,6 +439,7 @@ export const useStepperData = () => {
     isMobile,
     selectedOccasionItem,
     selectedRelationItem,
+    setOccasionItem,
     addMoreInputValue,
     optionalDetail,
   };
