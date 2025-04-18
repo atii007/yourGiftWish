@@ -37,11 +37,19 @@ const StepTwo = ({
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
 
-  const handleNextButtonClick = () => {
+  const handleNextButtonClick = (selectedSlug?: string) => {
     if (occasion === globalConstant.other) {
-      navigate(`/${globalConstant.globalRoutePrefix}/${occasion}/${selectedItem}/?${params.toString()}`);
+      navigate(
+        `/${globalConstant.globalRoutePrefix}/${occasion}/${
+          selectedSlug ? selectedSlug : selectedItem
+        }/?${params.toString()}`
+      );
     } else {
-      navigate(`/${globalConstant.globalRoutePrefix}/${occasion}/${selectedItem}`);
+      navigate(
+        `/${globalConstant.globalRoutePrefix}/${occasion}/${
+          selectedSlug ? selectedSlug : selectedItem
+        }`
+      );
     }
     handleNext();
   };
@@ -55,7 +63,11 @@ const StepTwo = ({
     // const params = new URLSearchParams(location.search);
     // if (occasion === "other") {
     params.set("person", otherRelationInputData);
-    navigate(`/${globalConstant.globalRoutePrefix}/${occasion}/${selectedItem}/?${params.toString()}`);
+    navigate(
+      `/${
+        globalConstant.globalRoutePrefix
+      }/${occasion}/${selectedItem}/?${params.toString()}`
+    );
     // navigate(
     //   `/${selectedItem}/?ocassion=${otherRelationInputData}`
     // );
@@ -90,7 +102,10 @@ const StepTwo = ({
               <Grid item xs={6} sm={4} md={3} key={index}>
                 <CommonOccasionCard
                   data={item}
-                  handleClick={() => handleCardClick(item)}
+                  handleClick={() => {
+                    handleCardClick(item);
+                    handleNextButtonClick(item.slug);
+                  }}
                   selected={selectedItem === item.slug}
                 />
               </Grid>

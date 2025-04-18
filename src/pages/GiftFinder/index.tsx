@@ -39,6 +39,7 @@ const GiftFinder = () => {
     selectedRelationItem,
     addMoreInputValue,
     optionalDetail,
+    setOccasionItem,
   } = useStepperData();
 
   return (
@@ -112,6 +113,7 @@ const GiftFinder = () => {
               handleNext={handleNext}
               handleBack={handleBack}
               selectedItem={selectedOccasionItem}
+              setOccasionItem={setOccasionItem}
               handleCardClick={handleOcassionClick}
               activeStep={activeStep}
               modalOpen={OtherModalOpen.occasionModal}

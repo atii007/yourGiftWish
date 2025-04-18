@@ -157,6 +157,12 @@ const StepThree = ({
           sx={commonStyle.outlinedButtonStyle}
         />
         <CustomButton
+          text="Start Over"
+          variant="outlined"
+          onClick={() => (window.location.href = "/suggestion/")}
+          sx={commonStyle.outlinedButtonStyle}
+        />
+        <CustomButton
           text="Find a Gift Wish"
           variant="contained"
           onClick={handleDataSubmission}

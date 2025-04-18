@@ -28,12 +28,17 @@ const StepOne = ({
   modalOpen,
   handleOpenCloseModal,
   handleCloseOcassionModal,
+  setOccasionItem,
 }: StepOneProps) => {
   const [otherOcassionInputData, setOtherOcassionInputData] = useState("");
   const navigate = useNavigate();
 
-  const handleNextButtonClick = () => {
-    navigate(`/${globalConstant.globalRoutePrefix}/${selectedItem}`);
+  const handleNextButtonClick = (selectedSlug?: string) => {
+    navigate(
+      `/${globalConstant.globalRoutePrefix}/${
+        selectedSlug ? selectedSlug : selectedItem
+      }`
+    );
     handleNext();
   };
 
@@ -43,7 +48,9 @@ const StepOne = ({
   };
 
   const handleConfirmOtherInputData = () => {
-    navigate(`/${globalConstant.globalRoutePrefix}/${selectedItem}/?ocassion=${otherOcassionInputData}`);
+    navigate(
+      `/${globalConstant.globalRoutePrefix}/${selectedItem}/?ocassion=${otherOcassionInputData}`
+    );
     handleOpenCloseModal();
     handleNext();
   };
@@ -72,7 +79,11 @@ const StepOne = ({
               <Grid item xs={6} sm={4} md={3} key={index}>
                 <CommonOccasionCard
                   data={item}
-                  handleClick={() => handleCardClick(item)}
+                  handleClick={() => {
+                    handleCardClick(item);
+                    setOccasionItem(item.slug);
+                    handleNextButtonClick(item.slug);
+                  }}
                   selected={selectedItem === item.slug}
                 />
               </Grid>
